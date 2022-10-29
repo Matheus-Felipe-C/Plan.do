@@ -1,3 +1,3 @@
 #pragma once
 
-void addTask(char *taskName);
+void addTask(char *taskName, FILE *f);
