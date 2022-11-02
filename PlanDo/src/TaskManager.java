@@ -14,6 +14,7 @@ public class TaskManager {
             FileWriter writer = new FileWriter(file, true);
 
             writer.write("task_name: " + taskName + "\n\n");
+            //writer.write("id: " + genId());
             System.out.println("Task added successfully!");
 
             writer.close();
@@ -23,25 +24,43 @@ public class TaskManager {
 
     }
 
-    public void showTaskList() {
+    //Generates an ID for each task that is added
+    private String genId() {
+                
+        return null;
+    }
+
+    public String readTaskList() {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(file));
+
+            //String that will be used to check on while
             String st;
+
+            //String that will receive the whole data
+            String data = "";
 
             // flag to see if task list is empty
             boolean flag = false;
 
             // While the reader is not null, print the line
             while ((st = reader.readLine()) != null) {
-                System.out.println(st);
+                data += st + "\n";
                 flag = true;
             }
-            if (flag == false)
-                System.out.println("Lista vazia");
+            if (flag == false) data = "Lista vazia";
 
             reader.close();
+
+            return data;
         } catch (Exception e) {
             System.out.println(e);
+            
+            return null;
         }
+    }
+
+    public void completeTask() {
+
     }
 }
