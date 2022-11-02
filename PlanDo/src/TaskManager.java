@@ -13,8 +13,8 @@ public class TaskManager {
         try {
             FileWriter writer = new FileWriter(file, true);
 
-            writer.write("task_name: " + taskName + "\n\n");
-            //writer.write("id: " + genId());
+            writer.write("task_name: " + taskName + "\n");
+            writer.write("id: " + genId() + "\n\n");
             System.out.println("Task added successfully!");
 
             writer.close();
@@ -25,9 +25,12 @@ public class TaskManager {
     }
 
     //Generates an ID for each task that is added
-    private String genId() {
-                
-        return null;
+    private int genId() {
+        String data = readTaskList();
+        String taskList[] = data.split("\n\n");
+
+        if (data.equals("Lista vazia")) return 1;
+        else return taskList.length + 1;
     }
 
     public String readTaskList() {
