@@ -150,6 +150,36 @@ public class TaskManager {
         }
     }
 
+    public String seeCompleted() {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(completed));
+
+            //String that will be used to check on while
+            String st;
+
+            //String that will receive the whole data
+            String data = "";
+
+            // flag to see if task list is empty
+            boolean flag = false;
+
+            // While the reader is not null, print the line
+            while ((st = reader.readLine()) != null) {
+                data += st + "\n";
+                flag = true;
+            }
+            if (!flag) data = "Lista vazia";
+
+            reader.close();
+
+            return data;
+        } catch (Exception e) {
+            System.out.println(e);
+            
+            return null;
+        }
+    }
+
     /* generates an integer that is the 4 last characters of the
     * "id" line, minus the whitespaces before and after the line
     */
