@@ -82,7 +82,7 @@ public class TaskManager {
         }
     }
 
-    public void completeTask(int taskId) {        
+    public void completeTask(int taskId, String time) {        
         boolean flag = false;
 
         try {
@@ -103,6 +103,7 @@ public class TaskManager {
                     flag = true;
 
                     writer.write(taskName + "\n");
+                    writer.write("time_completed: " + time + "\n");
 
                     //Remove completed task from todos.txt
                     removeTask(taskName, id);

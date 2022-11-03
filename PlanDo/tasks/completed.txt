@@ -4,3 +4,7 @@ task_name: a test
 task_name: 
 task_name: tarefaaaa
 task_name: mais uma tarefa
+task_name: tarefa
+time_completed: 30
+task_name: testando o  temmpo
+time_completed: 70

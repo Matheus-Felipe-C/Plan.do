@@ -10,5 +10,3 @@ task_name: a test
 id: 0007
 task_name: 
 id: 008
-task_name: tarefa
-id: 0010

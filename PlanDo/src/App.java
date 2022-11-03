@@ -35,9 +35,10 @@ public class App {
                 case "3":
                     taskManager.readTaskList();
                     System.out.println("Digite o id da tarefa a ser completada");
-
                     String id = scan.nextLine();
-                    taskManager.completeTask(Integer.parseInt(id));
+                    System.out.println("Digite o tempo gasto (em segundos) na tarefa");
+                    String time = scan.nextLine();
+                    taskManager.completeTask(Integer.parseInt(id), time);
                     break;
                 case "4":
                     System.out.println(taskManager.seeCompleted());
@@ -47,5 +48,6 @@ public class App {
                     break;
             }
         }
+        scan.close();
     }
 }
