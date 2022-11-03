@@ -26,12 +26,30 @@ public class TaskManager {
     }
 
     //Generates an ID for each task that is added
-    private int genId() {
+    private String genId() {
         String data = readTaskList();
-        String taskList[] = data.split("\n");
 
-        if (data.equals("Lista vazia")) return 1;
-        else return taskList.length - 1;
+        if (data.equals("Lista vazia")) return "0001";
+
+        else {
+            String taskList[] = data.split("\n");
+            
+            int len = (taskList.length);
+            int index = compId(taskList[len-1]);
+            System.out.println(index);
+            String pre = "";
+            if (len == 1)  pre= "000" ; 
+            if (len < 10)  pre="000";
+            else if (len < 100)  pre="00";
+            else if (len < 1000)  pre="0";
+
+            pre +=  (index+1);
+            
+            return pre;
+            
+        } 
+
+
     }
 
     public String readTaskList() {
@@ -76,10 +94,9 @@ public class TaskManager {
 
             while (taskName != null) {
                 id = reader.readLine();
-                /* Comparable integer that is the 2 last characters of the
-                 * "id" line, minus the whitespaces before and after the line
-                 */
-                int compId = Integer.parseInt(id.substring(id.length() - 2).trim());
+                
+                //Gets the comparable integer
+                int compId = compId(id);
 
                 //if current id is equal to the passed id, write it to completed.txt
                 if (id.contains("id: ") && taskId == compId) {
@@ -114,9 +131,10 @@ public class TaskManager {
             String nextLine;
 
             while((currentLine = reader.readLine()) != null) {
+                nextLine = reader.readLine();
                 //If current line equals to task name or next line is equal to the id, write to temp
-                if(currentLine.equals(name) && (nextLine = reader.readLine()).equals(id) || currentLine.equals("")) continue;
-                writer.write(currentLine + System.getProperty("line.separator"));
+                if(currentLine.equals(name) && nextLine.equals(id)) continue;
+                writer.write(currentLine + System.getProperty("line.separator") + nextLine + System.getProperty("line.separator"));
             }
             writer.close(); 
             reader.close(); 
@@ -130,5 +148,12 @@ public class TaskManager {
             System.out.println(e);
             return false;
         }
+    }
+
+    /* generates an integer that is the 4 last characters of the
+    * "id" line, minus the whitespaces before and after the line
+    */
+    private int compId(String id) {
+        return Integer.parseInt(id.substring(id.length() - 4).trim());
     }
 }
