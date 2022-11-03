@@ -15,7 +15,7 @@ public class TaskManager {
             FileWriter writer = new FileWriter(todos, true);
 
             writer.write("task_name: " + taskName + "\n");
-            writer.write("id: " + genId() + "\n\n");
+            writer.write("id: " + genId() + "\n");
             System.out.println("Task added successfully!");
 
             writer.close();
@@ -28,10 +28,10 @@ public class TaskManager {
     //Generates an ID for each task that is added
     private int genId() {
         String data = readTaskList();
-        String taskList[] = data.split("\n\n");
+        String taskList[] = data.split("\n");
 
         if (data.equals("Lista vazia")) return 1;
-        else return taskList.length + 1;
+        else return taskList.length - 1;
     }
 
     public String readTaskList() {
@@ -87,10 +87,11 @@ public class TaskManager {
 
                     writer.write(taskName + "\n");
 
-                    //Remove from todos.txt
+                    //Remove completed task from todos.txt
                     removeTask(taskName, id);
+                    break;
                 }
-                taskName = reader.readLine();
+
                 taskName = reader.readLine();
             }
         
@@ -114,7 +115,7 @@ public class TaskManager {
 
             while((currentLine = reader.readLine()) != null) {
                 //If current line equals to task name or next line is equal to the id, write to temp
-                if(currentLine.equals(name) && (nextLine = reader.readLine()).equals(id)) continue;
+                if(currentLine.equals(name) && (nextLine = reader.readLine()).equals(id) || currentLine.equals("")) continue;
                 writer.write(currentLine + System.getProperty("line.separator"));
             }
             writer.close(); 
