@@ -15,7 +15,7 @@ public class App {
             System.out.println("1 - Adicionar uma tarefa");
             System.out.println("2 - Ver lista de tarefas");
             System.out.println("3 - Completar uma tarefa");
-            System.out.println("4 - Ver tarefas concluídas (WIP)");
+            System.out.println("4 - Ver tarefas concluídas");
             System.out.println("0 - Sair");
 
             input = scan.nextLine();
