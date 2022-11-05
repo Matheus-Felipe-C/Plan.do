@@ -29,15 +29,20 @@ public class TaskManager {
     private String genId() {
         String data = readTaskList();
 
+        // If the list of todos is empty, return id = 1
         if (data.equals("Lista vazia")) return "0001";
 
         else {
             String taskList[] = data.split("\n");
             
             int len = (taskList.length);
+
+            //Passing the last id to index
             int index = compId(taskList[len-1]);
             System.out.println(index);
             String pre = "";
+
+            //pre will be the zeros before the id number
             if (len == 1)  pre= "000" ; 
             if (len < 10)  pre="000";
             else if (len < 100)  pre="00";
@@ -62,7 +67,7 @@ public class TaskManager {
             //String that will receive the whole data
             String data = "";
 
-            // flag to see if task list is empty
+            // flag to see if task list has some content
             boolean flag = false;
 
             // While the reader is not null, print the line
@@ -105,8 +110,10 @@ public class TaskManager {
                     writer.write(taskName + "\n");
                     writer.write("time_completed: " + time + "\n");
 
-                    //Remove completed task from todos.txt
-                    removeTask(taskName, id);
+                    //Remove completed task from todos.txt, but throw exception if it return false
+                    if (!removeTask(taskName, id)) {
+                        throw new Exception("I don't know what happened :(");
+                    }
                     break;
                 }
 
@@ -140,7 +147,7 @@ public class TaskManager {
             writer.close(); 
             reader.close(); 
 
-            
+            //Rename tempFile to todos in order to overwrite old data
             boolean successful = tempFile.renameTo(todos);
 
             return successful;
