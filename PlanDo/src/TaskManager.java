@@ -16,7 +16,7 @@ public class TaskManager {
 
             writer.write("task_name: " + taskName + "\n");
             writer.write("id: " + genId() + "\n");
-            System.out.println("Task added successfully!");
+            System.out.println("Tarefa adicionada com sucesso!");
 
             writer.close();
         } catch (Exception e) {
@@ -108,7 +108,7 @@ public class TaskManager {
                     flag = true;
 
                     writer.write(taskName + "\n");
-                    writer.write("time_completed: " + time + "\n");
+                    writer.write("time_completed: " + time + " minutes\n");
                     reader.close();
                     writer.close();
                     
@@ -122,8 +122,8 @@ public class TaskManager {
                 taskName = reader.readLine();
             }
         
-            if (!flag) System.out.println("Could not find task by the provided task id");
-            else System.out.println("Task completed!");
+            if (!flag) System.out.println("Não foi possível achar a tarefa, por favor tente novamente");
+            else System.out.println("Tarefa completada!");
 
         } catch (Exception e) {
             System.out.println(e);

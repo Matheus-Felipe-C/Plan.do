@@ -36,7 +36,7 @@ public class App {
                     taskManager.readTaskList();
                     System.out.println("Digite o id da tarefa a ser completada");
                     String id = scan.nextLine();
-                    System.out.println("Digite o tempo gasto (em segundos) na tarefa");
+                    System.out.println("Digite o tempo gasto em minutos(no formato minuto:segundo) na tarefa");
                     String time = scan.nextLine();
                     taskManager.completeTask(Integer.parseInt(id), time);
                     break;
