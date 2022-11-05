@@ -109,7 +109,9 @@ public class TaskManager {
 
                     writer.write(taskName + "\n");
                     writer.write("time_completed: " + time + "\n");
-
+                    reader.close();
+                    writer.close();
+                    
                     //Remove completed task from todos.txt, but throw exception if it return false
                     if (!removeTask(taskName, id)) {
                         throw new Exception("I don't know what happened :(");
@@ -123,8 +125,6 @@ public class TaskManager {
             if (!flag) System.out.println("Could not find task by the provided task id");
             else System.out.println("Task completed!");
 
-            reader.close();
-            writer.close();
         } catch (Exception e) {
             System.out.println(e);
         }
